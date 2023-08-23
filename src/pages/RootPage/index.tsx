@@ -1,12 +1,20 @@
 import React from 'react';
-
-import * as S from './RootPage.style';
+import { Link } from 'react-router-dom';
+import { FormContainer, FormTitle, ButtonContainer, ActionButton } from './RootPage.style';
 
 const RootPage = () => {
   return (
-    <section>
-      <S.Header>루트(메인) 페이지입니다.</S.Header>
-    </section>
+    <FormContainer>
+      <FormTitle>TODO LIST</FormTitle>
+      <ButtonContainer>
+        <Link to="/signin">
+          <ActionButton>로그인</ActionButton>
+        </Link>
+        <Link to="/signup">
+          <ActionButton>회원가입</ActionButton>
+        </Link>
+      </ButtonContainer>
+    </FormContainer>
   );
 };
 
