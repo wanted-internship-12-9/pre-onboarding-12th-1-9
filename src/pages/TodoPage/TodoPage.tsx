@@ -27,21 +27,37 @@ export default function TodoPage() {
   };
 
   return (
-    <section>
-      <TodoInputArea>
-        <TodoInput
-          data-testid="new-todo-input"
-          placeholder="할 일을 입력해 주세요."
-          value={newTodoInput}
-          onChange={onChangeTodoBody}
-        />
-        <TodoAddBtn data-testid="new-todo-add-button" onClick={createTodo}>
-          추가
-        </TodoAddBtn>
-      </TodoInputArea>
-    </section>
+    <TodoContainer>
+      <TodoArea>
+        <TodoInputArea>
+          <TodoInput
+            data-testid="new-todo-input"
+            placeholder="할 일을 입력해 주세요."
+            value={newTodoInput}
+            onChange={onChangeTodoBody}
+          />
+          <TodoAddBtn data-testid="new-todo-add-button" onClick={createTodo}>
+            추가
+          </TodoAddBtn>
+        </TodoInputArea>
+      </TodoArea>
+    </TodoContainer>
   );
 }
+
+const TodoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
+
+const TodoArea = styled.div`
+  width: 100%;
+  max-width: 700px;
+  padding: 20px;
+`;
 
 const TodoInputArea = styled.div`
   display: flex;
