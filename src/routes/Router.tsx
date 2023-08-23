@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RootPage from '../pages/RootPage';
 import SignUpPage from '../pages/SignUpPage';
 import SignInPage from '../pages/SignInPage';
-import TodoPage from '../pages/TodoPage';
+import TodoPage from '../pages/TodoPage/TodoPage';
 
 const Router = () => {
   return (
