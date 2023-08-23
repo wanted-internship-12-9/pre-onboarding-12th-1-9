@@ -1,11 +1,43 @@
 import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
+import { axiosFetch } from '../../api/axiosInstance';
+import { API_PATH } from '../../api/apiConfig';
+
 export default function TodoPage() {
+  const [newTodoInput, setNewTodoInput] = useState<string>('');
+
+  const createTodo = async () => {
+    try {
+      if (newTodoInput) {
+        const newTodo = {
+          todo: newTodoInput,
+        };
+        await axiosFetch.post(API_PATH.TODOS, newTodo);
+        // getTodos();  // get 요청 부분
+        setNewTodoInput('');
+      }
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  const onChangeTodoBody = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewTodoInput(e.target.value);
+  };
+
   return (
     <section>
       <TodoInputArea>
-        <TodoInput data-testid="new-todo-input" placeholder="할 일을 입력해 주세요." />
-        <TodoAddBtn data-testid="new-todo-add-button">추가</TodoAddBtn>
+        <TodoInput
+          data-testid="new-todo-input"
+          placeholder="할 일을 입력해 주세요."
+          value={newTodoInput}
+          onChange={onChangeTodoBody}
+        />
+        <TodoAddBtn data-testid="new-todo-add-button" onClick={createTodo}>
+          추가
+        </TodoAddBtn>
       </TodoInputArea>
     </section>
   );
