@@ -1,11 +1,22 @@
-import React from 'react';
+import * as React from 'react';
+import {
+  TodoArea,
+  TodoContainer,
+  TodoInputArea,
+  TodoListArea,
+  TodoTitle,
+} from '../../styles/todoStyles.style';
 
-const TodoPage = () => {
+function TodoList() {
   return (
-    <section>
-      <h1>투두 리스트 페이지입니다.</h1>
-    </section>
+    <TodoContainer>
+      <TodoArea>
+        <TodoTitle>Todo List</TodoTitle>
+        <TodoInputArea style={{ background: 'lightgreen' }}>Insert Form</TodoInputArea>
+        <TodoListArea style={{ background: 'lightblue' }}>Todo Item</TodoListArea>
+      </TodoArea>
+    </TodoContainer>
   );
-};
+}
 
-export default TodoPage;
+export default TodoList;
