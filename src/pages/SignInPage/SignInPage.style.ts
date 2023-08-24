@@ -43,6 +43,7 @@ export const FormInput = styled.input`
 `;
 
 export const MoveButton = styled.button`
+  cursor: pointer;
   font-size: 15px;
   margin-top: 20px;
   width: 410px;
@@ -58,6 +59,7 @@ export const MoveButton = styled.button`
 `;
 
 export const SubmitButton = styled.button`
+  cursor: pointer;
   width: 100%;
   height: 45px;
   border: none;
