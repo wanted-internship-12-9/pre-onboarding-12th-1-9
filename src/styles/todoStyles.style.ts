@@ -39,3 +39,28 @@ export const TodoListArea = styled.ul`
     border-bottom: none;
   }
 `;
+
+export const TodoInput = styled.input`
+  font-size: 15px;
+  padding: 0px 70px 0px 15px;
+  border-radius: 50px;
+  border: none;
+  width: 100%;
+  height: 40px;
+  box-shadow: 0px 0px 5px lightgray;
+
+  &:focus {
+    outline: none;
+    border: solid 1px lightgray;
+  }
+`;
+
+export const TodoAddBtn = styled.button`
+  position: absolute;
+  font-size: 15px;
+  font-weight: 600;
+  right: 17px;
+  padding: 5px 10px;
+  background-color: transparent;
+  border: none;
+`;
