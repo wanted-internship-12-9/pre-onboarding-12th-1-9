@@ -38,7 +38,7 @@ function TodoPage() {
 
   useEffect(() => {
     getTodos();
-  }, [])
+  }, []);
   const getTodos = async () => {
     try {
       const result = await axiosFetch.get(API_PATH.TODOS);
@@ -67,6 +67,5 @@ function TodoPage() {
     </TodoContainer>
   );
 }
-
 
 export default TodoPage;
