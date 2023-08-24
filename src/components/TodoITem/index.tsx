@@ -7,9 +7,10 @@ interface TodoItemProps {
   id: number;
   todo: string;
   isCompleted: boolean;
+  getTodos: () => void;
 }
 
-const TodoItem = ({ id, todo, isCompleted }: TodoItemProps) => {
+const TodoItem = ({ id, todo, isCompleted, getTodos }: TodoItemProps) => {
   const [isEdited, setIsEdited] = useState<boolean>(false);
   const editedTodoRef = useRef<HTMLInputElement>(null);
   const [todoText, setTodoText] = useState<string | undefined>(todo);
@@ -25,7 +26,7 @@ const TodoItem = ({ id, todo, isCompleted }: TodoItemProps) => {
     } catch (err) {
       alert(err);
     }
-    // getTodos();  // get 요청 부분
+    getTodos();
   };
   const onTodoCompleted = async () => {
     try {
@@ -47,7 +48,7 @@ const TodoItem = ({ id, todo, isCompleted }: TodoItemProps) => {
         isCompleted,
       });
       setTodoText(editedTodoRef.current?.value);
-      // getTodos();  // get 요청 부분
+      getTodos();
     } catch (err) {
       alert(err);
     }
