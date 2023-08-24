@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { API_PATH } from '../../api/apiConfig';
 import { axiosFetch } from '../../api/axiosInstance';
+import TodoItem from '../../components/TodoITem';
 import {
   TodoAddBtn,
   TodoArea,
@@ -15,7 +16,14 @@ import { TodoResponse } from '../../types/todo';
 function TodoPage() {
   const [todoList, setTodoList] = useState<TodoResponse[]>();
   const [newTodoInput, setNewTodoInput] = useState<string>('');
-
+  const getTodos = useCallback(async () => {
+    try {
+      const result = await axiosFetch.get(API_PATH.TODOS);
+      setTodoList(result?.data);
+    } catch (err) {
+      alert(err);
+    }
+  }, []);
   const createTodo = async () => {
     try {
       if (newTodoInput) {
@@ -23,30 +31,21 @@ function TodoPage() {
           todo: newTodoInput,
         };
         await axiosFetch.post(API_PATH.TODOS, newTodo);
-        // getTodos();  // get 요청 부분
+        getTodos();
         setNewTodoInput('');
       }
     } catch (err) {
       alert(err);
     }
   };
-
   const onChangeTodoBody = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTodoInput(e.target.value);
   };
-  console.info('todoList: ', todoList);
 
   useEffect(() => {
     getTodos();
   }, []);
-  const getTodos = async () => {
-    try {
-      const result = await axiosFetch.get(API_PATH.TODOS);
-      setTodoList(result?.data);
-    } catch (err) {
-      alert(err);
-    }
-  };
+
   return (
     <TodoContainer>
       <TodoArea>
@@ -62,7 +61,11 @@ function TodoPage() {
             추가
           </TodoAddBtn>
         </TodoInputArea>
-        <TodoListArea style={{ background: 'lightblue' }}>Todo Item</TodoListArea>
+        <TodoListArea>
+          {todoList?.map(({ id, todo, isCompleted }) => (
+            <TodoItem key={id} id={id} todo={todo} isCompleted={isCompleted} getTodos={getTodos} />
+          ))}
+        </TodoListArea>
       </TodoArea>
     </TodoContainer>
   );
