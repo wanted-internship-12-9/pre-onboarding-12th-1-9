@@ -1,20 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FormContainer, FormTitle, ButtonContainer, ActionButton } from './RootPage.style';
+import * as S from './RootPage.style';
 
 const RootPage = () => {
   return (
-    <FormContainer>
-      <FormTitle>TODO LIST</FormTitle>
-      <ButtonContainer>
+    <S.FormContainer>
+      <S.FormTitle>TODO LIST</S.FormTitle>
+      <S.ButtonContainer>
         <Link to="/signin">
-          <ActionButton>로그인</ActionButton>
+          <S.ActionButton>로그인</S.ActionButton>
         </Link>
         <Link to="/signup">
-          <ActionButton>회원가입</ActionButton>
+          <S.ActionButton>회원가입</S.ActionButton>
         </Link>
-      </ButtonContainer>
-    </FormContainer>
+      </S.ButtonContainer>
+    </S.FormContainer>
   );
 };
 
