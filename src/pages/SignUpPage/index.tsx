@@ -1,9 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import * as S from './SignUpPage.style';
 import useInput from '../../hooks/useInput';
+import { SignUpRequest } from '../../types/auth';
+import { axiosFetch } from '../../api/axiosInstance';
+import { API_PATH } from '../../api/apiConfig';
+import axios from 'axios';
 
 const SignUpPage = () => {
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState('');
+
   const {
     value: email,
     setValue: setEmail,
@@ -22,10 +29,29 @@ const SignUpPage = () => {
   });
   const isFormValid = !isEmailError && !isPasswordError;
 
+  const signUp = async ({ email, password }: SignUpRequest) => {
+    try {
+      const response = await axiosFetch.post(API_PATH.AUTH.SIGN_UP, { email, password });
+      if (response?.status === 201) {
+        alert('성공적으로 가입되었습니다!\n로그인페이지로 이동합니다.');
+        navigate('/signin');
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        setErrorMessage(error.response?.data.message);
+      }
+    }
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    signUp({ email, password });
+  };
+
   return (
     <S.FormContainer>
       <S.FormName>회원가입</S.FormName>
-      <S.Form>
+      <S.Form onSubmit={handleSubmit}>
         <S.FormInput
           data-testid="email-input"
           type="text"
@@ -46,6 +72,7 @@ const SignUpPage = () => {
         {password !== '' && isPasswordError && (
           <S.ErrorMessage>비밀번호는 8자 이상이어야 합니다.</S.ErrorMessage>
         )}
+        {errorMessage && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
         <S.SubmitButton data-testid="signup-button" type="submit" disabled={!isFormValid}>
           회원가입
         </S.SubmitButton>
