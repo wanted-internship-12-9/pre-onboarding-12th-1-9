@@ -11,10 +11,13 @@ const AuthLayout = () => {
     if (currentPath === '/todo' && !accessToken) {
       navigate('/signin');
     }
-    if ((currentPath === '/signin' || currentPath === '/signup') && accessToken) {
+    if (
+      (currentPath === '/' || currentPath === '/signin' || currentPath === '/signup') &&
+      accessToken
+    ) {
       navigate('/todo');
     }
-  }, [currentPath]);
+  }, [currentPath, accessToken]);
 
   return <Outlet />;
 };
