@@ -10,7 +10,7 @@ import {
   TodoInputArea,
   TodoListArea,
   TodoTitle,
-} from '../../styles/todoStyles.style';
+} from './TodoPage.style';
 import { TodoResponse } from '../../types/todo';
 
 function TodoPage() {
