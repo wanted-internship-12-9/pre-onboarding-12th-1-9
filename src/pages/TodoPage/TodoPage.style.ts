@@ -1,3 +1,4 @@
+import { FiLogOut } from 'react-icons/fi';
 import styled from 'styled-components';
 
 export const TodoContainer = styled.div`
@@ -63,4 +64,8 @@ export const TodoAddBtn = styled.button`
   padding: 5px 10px;
   background-color: transparent;
   border: none;
+`;
+
+export const LogoutButton = styled(FiLogOut)`
+  cursor: pointer;
 `;
