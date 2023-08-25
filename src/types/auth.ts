@@ -3,6 +3,10 @@ export interface SignInRequest {
   password: string;
 }
 
+export interface SignInResponse {
+  access_token: string;
+}
+
 export interface SignUpRequest {
   email: string;
   password: string;

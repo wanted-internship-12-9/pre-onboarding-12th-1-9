@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import useInput from '../../hooks/useInput';
 import { axiosFetch } from '../../api/axiosInstance';
 import { API_PATH } from '../../api/apiConfig';
-import { SignInRequest } from '../../types/auth';
+import { SignInRequest, SignInResponse } from '../../types/auth';
 
 import * as S from './SignInPage.style';
 
@@ -32,7 +32,7 @@ const SignInPage = () => {
 
   const signIn = async ({ email, password }: SignInRequest) => {
     try {
-      const response = await axiosFetch.post(API_PATH.AUTH.SIGN_IN, {
+      const response: AxiosResponse<SignInResponse> = await axiosFetch.post(API_PATH.AUTH.SIGN_IN, {
         email,
         password,
       });
