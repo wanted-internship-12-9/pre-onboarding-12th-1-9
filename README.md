@@ -21,16 +21,20 @@ $ npm start
 
 ### 개발
 
-<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge"> 
-<img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge"> 
-<img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge"> 
-<img src="https://img.shields.io/badge/styledComponents-DB7093?style=for-the-badge">
+<p align="left">
+  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge"> 
+  <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge"> 
+  <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge"> 
+  <img src="https://img.shields.io/badge/styledComponents-DB7093?style=for-the-badge">
+</p>
 
 ### 일관성 있는 코드
 
-<img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge"> 
-<img src="https://img.shields.io/badge/esLint-4B32C3?style=for-the-badge"> 
-<img src="https://img.shields.io/badge/husky-273A60?style=for-the-badge">
+<p align="left">
+  <img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge"> 
+  <img src="https://img.shields.io/badge/esLint-4B32C3?style=for-the-badge"> 
+  <img src="https://img.shields.io/badge/husky-273A60?style=for-the-badge">
+</p>
 
 ## 팀 협업
 
