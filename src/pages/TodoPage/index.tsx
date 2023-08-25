@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { API_PATH } from '../../api/apiConfig';
 import { axiosFetch } from '../../api/axiosInstance';
-import TodoItem from '../../components/TodoITem';
+import TodoItem from '../../components/TodoItem';
 import {
   TodoAddBtn,
   TodoArea,
