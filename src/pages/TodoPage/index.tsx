@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { API_PATH } from '../../api/apiConfig';
 import { axiosFetch } from '../../api/axiosInstance';
-import TodoItem from '../../components/TodoITem';
+import TodoItem from '../../components/TodoItem';
 import {
   TodoAddBtn,
   TodoArea,
@@ -12,6 +12,7 @@ import {
   TodoTitle,
 } from './TodoPage.style';
 import { TodoResponse } from '../../types/todo';
+import axios from 'axios';
 
 function TodoPage() {
   const [todoList, setTodoList] = useState<TodoResponse[]>();
@@ -20,8 +21,10 @@ function TodoPage() {
     try {
       const result = await axiosFetch.get(API_PATH.TODOS);
       setTodoList(result?.data);
-    } catch (err) {
-      alert(err);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        alert(error.response?.data.message);
+      }
     }
   }, []);
   const createTodo = async () => {
@@ -34,8 +37,10 @@ function TodoPage() {
         getTodos();
         setNewTodoInput('');
       }
-    } catch (err) {
-      alert(err);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        alert(error.response?.data.message);
+      }
     }
   };
   const onChangeTodoBody = (e: React.ChangeEvent<HTMLInputElement>) => {
