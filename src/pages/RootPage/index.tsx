@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import * as S from './RootPage.style';
 
 const RootPage = () => {

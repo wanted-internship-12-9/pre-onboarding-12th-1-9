@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react';
+import axios from 'axios';
+
 import { axiosFetch } from '../../api/axiosInstance';
 import { API_PATH } from '../../api/apiConfig';
+
 import * as S from './TodoItem.style';
-import axios from 'axios';
 
 interface TodoItemProps {
   id: number;

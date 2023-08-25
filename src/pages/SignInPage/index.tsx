@@ -30,7 +30,7 @@ const SignInPage = () => {
   const isFormValid = !isEmailError && !isPasswordError;
   const [errorMessage, setErrorMessage] = useState('');
 
-  const signIn = async ({ email, password }: SignInRequest) => {
+  const postSignIn = async ({ email, password }: SignInRequest) => {
     try {
       const response: AxiosResponse<SignInResponse> = await axiosFetch.post(API_PATH.AUTH.SIGN_IN, {
         email,
@@ -49,7 +49,7 @@ const SignInPage = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    signIn({ email, password });
+    postSignIn({ email, password });
   };
 
   return (

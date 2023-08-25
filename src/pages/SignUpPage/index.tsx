@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import axios, { AxiosResponse } from 'axios';
-import * as S from './SignUpPage.style';
+import { Link, useNavigate } from 'react-router-dom';
+
 import useInput from '../../hooks/useInput';
 import { SignInResponse, SignUpRequest } from '../../types/auth';
 import { axiosFetch } from '../../api/axiosInstance';
 import { API_PATH } from '../../api/apiConfig';
+
+import * as S from './SignUpPage.style';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -29,7 +31,7 @@ const SignUpPage = () => {
   });
   const isFormValid = !isEmailError && !isPasswordError;
 
-  const signUp = async ({ email, password }: SignUpRequest) => {
+  const postSignUp = async ({ email, password }: SignUpRequest) => {
     try {
       const response: AxiosResponse<SignInResponse> = await axiosFetch.post(API_PATH.AUTH.SIGN_UP, {
         email,
@@ -48,7 +50,7 @@ const SignUpPage = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    signUp({ email, password });
+    postSignUp({ email, password });
   };
 
   return (
