@@ -10,6 +10,7 @@ import {
   EditedInput,
   ButtonContainer,
 } from './TodoItem.style';
+import axios from 'axios';
 
 interface TodoItemProps {
   id: number;
@@ -31,8 +32,10 @@ const TodoItem = ({ id, todo, isCompleted, getTodos }: TodoItemProps) => {
     }
     try {
       await axiosFetch.delete(`${API_PATH.TODOS}/${id}`);
-    } catch (err) {
-      alert(err);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        alert(error.response?.data.message);
+      }
     }
     getTodos();
   };
@@ -42,8 +45,10 @@ const TodoItem = ({ id, todo, isCompleted, getTodos }: TodoItemProps) => {
         todo: todoText,
         isCompleted: !isCompleted,
       });
-    } catch (err) {
-      alert(err);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        alert(error.response?.data.message);
+      }
     }
   };
   const onEditedTodoSubmit = async () => {
@@ -56,9 +61,12 @@ const TodoItem = ({ id, todo, isCompleted, getTodos }: TodoItemProps) => {
         isCompleted,
       });
       setTodoText(editedTodoRef.current?.value);
+      onEditedModeToggle();
       getTodos();
-    } catch (err) {
-      alert(err);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        alert(error.response?.data.message);
+      }
     }
   };
   return (
