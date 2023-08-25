@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios, { AxiosResponse } from 'axios';
 import * as S from './SignUpPage.style';
 import useInput from '../../hooks/useInput';
-import { SignUpRequest } from '../../types/auth';
+import { SignInResponse, SignUpRequest } from '../../types/auth';
 import { axiosFetch } from '../../api/axiosInstance';
 import { API_PATH } from '../../api/apiConfig';
-import axios from 'axios';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -31,7 +31,10 @@ const SignUpPage = () => {
 
   const signUp = async ({ email, password }: SignUpRequest) => {
     try {
-      const response = await axiosFetch.post(API_PATH.AUTH.SIGN_UP, { email, password });
+      const response: AxiosResponse<SignInResponse> = await axiosFetch.post(API_PATH.AUTH.SIGN_UP, {
+        email,
+        password,
+      });
       if (response?.status === 201) {
         alert('성공적으로 가입되었습니다!\n로그인페이지로 이동합니다.');
         navigate('/signin');

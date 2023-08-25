@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import useInput from '../../hooks/useInput';
 import { axiosFetch } from '../../api/axiosInstance';
 import { API_PATH } from '../../api/apiConfig';
-import { SignInRequest } from '../../types/auth';
+import { SignInRequest, SignInResponse } from '../../types/auth';
 
 import * as S from './SignInPage.style';
 
@@ -32,7 +32,7 @@ const SignInPage = () => {
 
   const signIn = async ({ email, password }: SignInRequest) => {
     try {
-      const response = await axiosFetch.post(API_PATH.AUTH.SIGN_IN, {
+      const response: AxiosResponse<SignInResponse> = await axiosFetch.post(API_PATH.AUTH.SIGN_IN, {
         email,
         password,
       });
@@ -42,11 +42,7 @@ const SignInPage = () => {
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        if (error.response?.status === 401) {
-          setErrorMessage('아이디나 비밀번호를 잘못 입력했습니다.');
-        } else {
-          setErrorMessage('일시적인 오류로 로그인 할 수 없습니다. 다시 시도해주세요.');
-        }
+        setErrorMessage(error.response?.data.message);
       }
     }
   };
