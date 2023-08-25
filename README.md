@@ -87,7 +87,7 @@ $ npm start
 > - useEffect: 렌더링 후 리다이렉트가 되므로, 화면이 깜빡이는 현상 발생
 > - useLayoutEffect: 렌더링과 페인팅 사이에 실행되어 깜빡이는 현상은 해결되었으나, 성능 저하 가능성 발생([리액트 공식문서: useLayoutEffect](https://react.dev/reference/react/useLayoutEffect))
 
-> - localStorage의 aceessToken 유무에 따라 리다이렉트 혹은 원래 페이지 이동
+> - localStorage의 accessToken 유무에 따라 리다이렉트 혹은 원래 페이지 이동
 
 ### 투두 리스트 목록과 체크박스
 
