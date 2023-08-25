@@ -12,6 +12,7 @@ import {
   TodoTitle,
 } from './TodoPage.style';
 import { TodoResponse } from '../../types/todo';
+import axios from 'axios';
 
 function TodoPage() {
   const [todoList, setTodoList] = useState<TodoResponse[]>();
@@ -20,8 +21,14 @@ function TodoPage() {
     try {
       const result = await axiosFetch.get(API_PATH.TODOS);
       setTodoList(result?.data);
-    } catch (err) {
-      alert(err);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status !== 200) {
+          alert(error.response?.data.message);
+        } else {
+          alert('일시적인 오류로 내용을 불러올 수 없습니다. 다시 시도해주세요.');
+        }
+      }
     }
   }, []);
   const createTodo = async () => {
@@ -34,8 +41,14 @@ function TodoPage() {
         getTodos();
         setNewTodoInput('');
       }
-    } catch (err) {
-      alert(err);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status !== 201) {
+          alert(error.response?.data.message);
+        } else {
+          alert('일시적인 오류로 내용을 적용할 수 없습니다. 다시 시도해주세요.');
+        }
+      }
     }
   };
   const onChangeTodoBody = (e: React.ChangeEvent<HTMLInputElement>) => {

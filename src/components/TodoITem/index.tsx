@@ -10,6 +10,7 @@ import {
   EditedInput,
   ButtonContainer,
 } from './TodoItem.style';
+import axios from 'axios';
 
 interface TodoItemProps {
   id: number;
@@ -31,8 +32,14 @@ const TodoItem = ({ id, todo, isCompleted, getTodos }: TodoItemProps) => {
     }
     try {
       await axiosFetch.delete(`${API_PATH.TODOS}/${id}`);
-    } catch (err) {
-      alert(err);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status !== 204) {
+          alert(error.response?.data.message);
+        } else {
+          alert('일시적인 오류로 내용을 삭제할 수 없습니다. 다시 시도해주세요.');
+        }
+      }
     }
     getTodos();
   };
@@ -42,8 +49,14 @@ const TodoItem = ({ id, todo, isCompleted, getTodos }: TodoItemProps) => {
         todo: todoText,
         isCompleted: !isCompleted,
       });
-    } catch (err) {
-      alert(err);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status !== 200) {
+          alert(error.response?.data.message);
+        } else {
+          alert('일시적인 오류로 내용을 변경할 수 없습니다. 다시 시도해주세요.');
+        }
+      }
     }
   };
   const onEditedTodoSubmit = async () => {
@@ -57,8 +70,14 @@ const TodoItem = ({ id, todo, isCompleted, getTodos }: TodoItemProps) => {
       });
       setTodoText(editedTodoRef.current?.value);
       getTodos();
-    } catch (err) {
-      alert(err);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status !== 200) {
+          alert(error.response?.data.message);
+        } else {
+          alert('일시적인 오류로 내용을 변경할 수 없습니다. 다시 시도해주세요.');
+        }
+      }
     }
   };
   return (
