@@ -69,6 +69,7 @@ const TodoItem = ({ id, todo, isCompleted, getTodos }: TodoItemProps) => {
         isCompleted,
       });
       setTodoText(editedTodoRef.current?.value);
+      onEditedModeToggle();
       getTodos();
     } catch (error) {
       if (axios.isAxiosError(error)) {
