@@ -47,7 +47,7 @@ $ npm start
  ┣ 📂api
  ┣ 📂components
  ┃ ┣ 📂AuthLayout
- ┃ ┗ 📂Layout
+ ┃ ┗ 📂TodoItem
  ┣ 📂hooks
  ┣ 📂pages
  ┃ ┣ 📂ErrorPage
