@@ -1,15 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { axiosFetch } from '../../api/axiosInstance';
 import { API_PATH } from '../../api/apiConfig';
-import {
-  TodoItemContainer,
-  TodoText,
-  Button,
-  TodoContent,
-  TodoEditor,
-  EditedInput,
-  ButtonContainer,
-} from './TodoItem.style';
+import * as S from './TodoItem.style';
 import axios from 'axios';
 
 interface TodoItemProps {
@@ -70,32 +62,32 @@ const TodoItem = ({ id, todo, isCompleted, getTodos }: TodoItemProps) => {
     }
   };
   return (
-    <TodoItemContainer>
+    <S.TodoItemContainer>
       <input type="checkbox" defaultChecked={isCompleted} onClick={onTodoCompleted} />
       {!isEdited ? (
-        <TodoContent>
-          <TodoText>{todoText}</TodoText>
-          <ButtonContainer>
-            <Button onClick={onEditedModeToggle}>수정</Button>
-            <Button onClick={onTodoDelete}>삭제</Button>
-          </ButtonContainer>
-        </TodoContent>
+        <S.TodoContent>
+          <S.TodoText>{todoText}</S.TodoText>
+          <S.ButtonContainer>
+            <S.Button onClick={onEditedModeToggle}>수정</S.Button>
+            <S.Button onClick={onTodoDelete}>삭제</S.Button>
+          </S.ButtonContainer>
+        </S.TodoContent>
       ) : (
-        <TodoEditor>
-          <EditedInput
+        <S.TodoEditor>
+          <S.EditedInput
             autoFocus
             type="text"
             defaultValue={todoText}
             ref={editedTodoRef}
             placeholder="할 일을 수정 해주세요."
           />
-          <ButtonContainer>
-            <Button onClick={onEditedTodoSubmit}>제출</Button>
-            <Button onClick={onEditedModeToggle}>취소</Button>
-          </ButtonContainer>
-        </TodoEditor>
+          <S.ButtonContainer>
+            <S.Button onClick={onEditedTodoSubmit}>제출</S.Button>
+            <S.Button onClick={onEditedModeToggle}>취소</S.Button>
+          </S.ButtonContainer>
+        </S.TodoEditor>
       )}
-    </TodoItemContainer>
+    </S.TodoItemContainer>
   );
 };
 

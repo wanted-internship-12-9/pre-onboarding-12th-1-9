@@ -2,15 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { API_PATH } from '../../api/apiConfig';
 import { axiosFetch } from '../../api/axiosInstance';
 import TodoItem from '../../components/TodoItem';
-import {
-  TodoAddBtn,
-  TodoArea,
-  TodoContainer,
-  TodoInput,
-  TodoInputArea,
-  TodoListArea,
-  TodoTitle,
-} from './TodoPage.style';
+import * as S from './TodoPage.style';
 import { TodoResponse } from '../../types/todo';
 import axios from 'axios';
 import { FiLogOut } from 'react-icons/fi';
@@ -59,30 +51,30 @@ function TodoPage() {
   }, []);
 
   return (
-    <TodoContainer>
-      <TodoArea>
-        <TodoTitle>
+    <S.TodoContainer>
+      <S.TodoArea>
+        <S.TodoTitle>
           Todo List
           <FiLogOut className="logoutBtn" size={21} onClick={logOut} />
-        </TodoTitle>
-        <TodoInputArea>
-          <TodoInput
+        </S.TodoTitle>
+        <S.TodoInputArea>
+          <S.TodoInput
             data-testid="new-todo-input"
             placeholder="할 일을 입력해 주세요."
             value={newTodoInput}
             onChange={onChangeTodoBody}
           />
-          <TodoAddBtn data-testid="new-todo-add-button" onClick={createTodo}>
+          <S.TodoAddBtn data-testid="new-todo-add-button" onClick={createTodo}>
             추가
-          </TodoAddBtn>
-        </TodoInputArea>
-        <TodoListArea>
+          </S.TodoAddBtn>
+        </S.TodoInputArea>
+        <S.TodoListArea>
           {todoList?.map(({ id, todo, isCompleted }) => (
             <TodoItem key={id} id={id} todo={todo} isCompleted={isCompleted} getTodos={getTodos} />
           ))}
-        </TodoListArea>
-      </TodoArea>
-    </TodoContainer>
+        </S.TodoListArea>
+      </S.TodoArea>
+    </S.TodoContainer>
   );
 }
 
