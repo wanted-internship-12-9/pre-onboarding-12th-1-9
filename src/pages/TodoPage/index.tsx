@@ -13,8 +13,11 @@ import {
 } from './TodoPage.style';
 import { TodoResponse } from '../../types/todo';
 import axios from 'axios';
+import { FiLogOut } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
 function TodoPage() {
+  const navigate = useNavigate();
   const [todoList, setTodoList] = useState<TodoResponse[]>();
   const [newTodoInput, setNewTodoInput] = useState<string>('');
   const getTodos = useCallback(async () => {
@@ -46,6 +49,10 @@ function TodoPage() {
   const onChangeTodoBody = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTodoInput(e.target.value);
   };
+  const logOut = () => {
+    localStorage.removeItem('accessToken');
+    navigate('/signin');
+  };
 
   useEffect(() => {
     getTodos();
@@ -54,7 +61,10 @@ function TodoPage() {
   return (
     <TodoContainer>
       <TodoArea>
-        <TodoTitle>Todo List</TodoTitle>
+        <TodoTitle>
+          Todo List
+          <FiLogOut className="logoutBtn" size={21} onClick={logOut} />
+        </TodoTitle>
         <TodoInputArea>
           <TodoInput
             data-testid="new-todo-input"
