@@ -1,12 +1,12 @@
 # [ Week 1 ] Todo List Refactoring
 
-> **동료학습**을 통해서 팀에서 생각한 원티드 프리온보딩 프론트엔드 인턴십 선발 과제의 **Best Pratice**를 만들고 제출해주세요
+> **동료학습**을 통해서 팀에서 생각한 원티드 프리온보딩 프론트엔드 인턴십 선발 과제의 **Best Practice**를 만들고 제출해주세요
 
 <img src = https://camo.githubusercontent.com/431cb39804ef7c333ffa8b0dfec7e24581654e84e3c8bcf91f64a43158c3156c/68747470733a2f2f7374617469632e77616e7465642e636f2e6b722f696d616765732f6576656e74732f323930392f62333539313861362e6a7067 />
 
 ## 기본 사항
 
-- 배포 링크 : TODO
+- 배포 링크 : [원티드 프리온보딩 인턴십 12th 9-rae 팀: TodoList](https://develop.d1klghdf2c4ddl.amplifyapp.com/)
 - 진행 기간 : 2023.08.22. ~ 2023.08.24.
 
 ## 실행 방법
